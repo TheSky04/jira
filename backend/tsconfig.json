@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    /* Output */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Module system */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "esModuleInterop": true,
+
+    /* Build tools */
+    "sourceMap": true,
+    "skipLibCheck": true,
+
+    /* Type safety */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* Other */
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src", "utils"]
+}
