@@ -5,5 +5,5 @@ const PORT = process.env.PORT || 5000;
 
 (async () => {
   await connectDB();
-  app.listen(PORT, () => console.log(`🚀 Server ${PORT} portunda çalışıyor...`));
+  app.listen(PORT, () => console.log(`🚀 Server works on ${PORT} port...`));
 })();

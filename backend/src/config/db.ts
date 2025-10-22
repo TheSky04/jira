@@ -6,7 +6,7 @@ dotenv.config();
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
 if (!DB_HOST || !DB_USER || !DB_PASSWORD || !DB_NAME) {
-  throw new Error("❌ .env dosyasındaki veritabanı bilgileri eksik!");
+  throw new Error("❌ .env informations are absent!");
 }
 
 export const connectDB = async () => {
@@ -18,10 +18,10 @@ export const connectDB = async () => {
       database: DB_NAME,
     });
 
-    console.log("✅ MySQL veritabanına bağlanıldı.");
+    console.log("Mysql is successfully connected.");
     return connection;
   } catch (error) {
-    console.error("❌ Veritabanı bağlantı hatası:", error);
+    console.error("❌ Mysql connection error:", error);
     process.exit(1);
   }
 };

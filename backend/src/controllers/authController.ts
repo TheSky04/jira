@@ -8,7 +8,7 @@ export const registerUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
-    return res.status(400).json({ message: "Tüm alanlar zorunludur." });
+    return res.status(400).json({ message: "All fields are required." });
   }
 
   const db = await connectDB();
@@ -19,7 +19,7 @@ export const registerUser = async (req: Request, res: Response) => {
   );
 
   if ((existingUser as any[]).length > 0) {
-    return res.status(400).json({ message: "Bu e-posta zaten kayıtlı." });
+    return res.status(400).json({ message: "This email was already registered." });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -29,7 +29,7 @@ export const registerUser = async (req: Request, res: Response) => {
     [username, email, hashedPassword]
   );
 
-  res.status(201).json({ message: "Kullanıcı başarıyla oluşturuldu." });
+  res.status(201).json({ message: "The user has been successfully created." });
 };
 
 export const loginUser = async (req: Request, res: Response) => {
@@ -40,17 +40,17 @@ export const loginUser = async (req: Request, res: Response) => {
   const users = rows as User[];
 
   if (users.length === 0) {
-    return res.status(400).json({ message: "Kullanıcı bulunamadı." });
+    return res.status(400).json({ message: "There is no user with the email." });
   }
 
   const user = users[0]!;
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    return res.status(401).json({ message: "Şifre hatalı." });
+    return res.status(401).json({ message: "Password is wrong." });
   }
 
   const token = generateToken(user.id!);
 
-  res.json({ token, user: { id: user.id, username: user.username, email: user.email } });
+  res.json({ token});
 };
